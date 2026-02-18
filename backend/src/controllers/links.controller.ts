@@ -5,7 +5,9 @@ import { AuthenticatedRequest, CreateLinkBody, UpdateLinkBody, ReorderLinksBody 
 
 export async function getLinks(req: Request, res: Response, next: NextFunction): Promise<void> {
   try {
+    console.log('Fetching links for user:', (req as AuthenticatedRequest).user.sub);
     const user = (req as AuthenticatedRequest).user;
+    console.log('User ID from token:', user);
     const links = await LinksService.getLinksByUserId(user.sub);
     sendSuccess(res, links);
   } catch (err) {

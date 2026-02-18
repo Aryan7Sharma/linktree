@@ -8,6 +8,8 @@ export const linksApi = {
   },
 
   create: async (data: { title: string; url: string }): Promise<Link> => {
+    //data.title = 'test'
+    //data.url = 'https://google.com'
     const res = await apiClient.post<ApiResponse<Link>>('/links', data);
     return res.data.data!;
   },
